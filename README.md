@@ -38,6 +38,26 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 }
 ```
 
+## Remote (Streamable HTTP)
+
+The server can also run as a remote HTTP endpoint using Streamable HTTP transport:
+
+```bash
+# Start HTTP server (default port 3001)
+npm run serve
+
+# Or with a custom port
+PORT=8080 npm run serve
+```
+
+Connect any MCP client to `http://your-host:3001/mcp`.
+
+### Usage with Claude Code (remote)
+
+```bash
+claude mcp add --transport http landfirm http://localhost:3001/mcp
+```
+
 ## Configuration
 
 By default the server connects to the Landfirm production API. To override:

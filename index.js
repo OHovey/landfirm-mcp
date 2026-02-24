@@ -1,7 +1,12 @@
 #!/usr/bin/env node
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { createServer } from './src/server.js';
 
-const server = createServer();
-const transport = new StdioServerTransport();
-await server.connect(transport);
+if (process.argv.includes('--http') || process.env.PORT) {
+  await import('./src/http.js');
+} else {
+  const { StdioServerTransport } = await import('@modelcontextprotocol/sdk/server/stdio.js');
+  const { createServer } = await import('./src/server.js');
+
+  const server = createServer();
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}

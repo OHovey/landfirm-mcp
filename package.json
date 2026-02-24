@@ -8,7 +8,8 @@
     "landfirm-mcp": "./index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "serve": "node index.js --http"
   },
   "keywords": [
     "mcp",
