@@ -1,4 +1,4 @@
-const BASE_URL = process.env.LANDFIRM_API_URL || 'http://localhost:3000';
+const BASE_URL = process.env.LANDFIRM_API_URL || 'https://api.landfirm.space';
 
 export async function apiGet(path, params = {}) {
   const url = new URL(path, BASE_URL);

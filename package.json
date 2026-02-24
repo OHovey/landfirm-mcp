@@ -1,7 +1,7 @@
 {
   "name": "landfirm-mcp",
   "version": "1.0.0",
-  "description": "MCP server for the Landfirm UK government data API",
+  "description": "MCP server for the Landfirm UK government data API — Companies House, Land Registry, EPC, and flood risk data",
   "main": "index.js",
   "type": "module",
   "bin": {
@@ -10,8 +10,32 @@
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": ["mcp", "uk", "property", "companies-house", "epc", "flood-risk", "landfirm"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "uk",
+    "property",
+    "companies-house",
+    "land-registry",
+    "epc",
+    "flood-risk",
+    "landfirm",
+    "claude"
+  ],
+  "author": "Oliver Hovey",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OHovey/landfirm-mcp.git"
+  },
+  "homepage": "https://landfirm.space",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    "src/"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0"
   }

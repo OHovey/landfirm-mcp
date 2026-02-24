@@ -1,6 +1,6 @@
 # Landfirm MCP Server
 
-MCP server for the [Landfirm](https://landfirm.space) UK government data API. Exposes Companies House, Land Registry, EPC, and flood risk data as MCP tools for Claude and other MCP-compatible agents.
+MCP server for the [Landfirm](https://landfirm.space) UK government data API. Gives Claude and other MCP-compatible agents access to Companies House, Land Registry, EPC, and flood risk data for England & Wales.
 
 ## Tools
 
@@ -17,18 +17,10 @@ MCP server for the [Landfirm](https://landfirm.space) UK government data API. Ex
 | `get_flood_risk` | Get flood risk and defences for a postcode | $0.003 |
 | `search_flood_risk` | Search flood risk by area and risk level | $0.003 |
 
-## Setup
+## Usage with Claude Code
 
 ```bash
-npm install
-```
-
-## Configuration
-
-Set the Landfirm API base URL (defaults to `http://localhost:3000`):
-
-```bash
-export LANDFIRM_API_URL=https://landfirm.space
+claude mcp add landfirm -- npx landfirm-mcp
 ```
 
 ## Usage with Claude Desktop
@@ -39,18 +31,35 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 {
   "mcpServers": {
     "landfirm": {
-      "command": "node",
-      "args": ["/path/to/landfirm-mcp/index.js"],
+      "command": "npx",
+      "args": ["landfirm-mcp"]
+    }
+  }
+}
+```
+
+## Configuration
+
+By default the server connects to the Landfirm production API. To override:
+
+```json
+{
+  "mcpServers": {
+    "landfirm": {
+      "command": "npx",
+      "args": ["landfirm-mcp"],
       "env": {
-        "LANDFIRM_API_URL": "https://landfirm.space"
+        "LANDFIRM_API_URL": "http://localhost:3000"
       }
     }
   }
 }
 ```
 
-## Usage with Claude Code
+## Payments
 
-```bash
-claude mcp add landfirm node /path/to/landfirm-mcp/index.js
-```
+All API calls are priced via [x402](https://www.x402.org/) micropayments on Solana. The prices shown above are per-call. No API key or signup required — just a funded Solana wallet.
+
+## License
+
+MIT
