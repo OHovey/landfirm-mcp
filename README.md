@@ -80,6 +80,26 @@ By default the server connects to the Landfirm production API. To override:
 
 All API calls are priced via [x402](https://www.x402.org/) micropayments on Solana. The prices shown above are per-call. No API key or signup required — just a funded Solana wallet.
 
+### Automatic payment
+
+Set the `SOLANA_PRIVATE_KEY` env var to your base58-encoded Solana private key. The MCP server will automatically handle the 402→pay→retry flow for every API call.
+
+```json
+{
+  "mcpServers": {
+    "landfirm": {
+      "command": "npx",
+      "args": ["landfirm-mcp"],
+      "env": {
+        "SOLANA_PRIVATE_KEY": "<your-base58-private-key>"
+      }
+    }
+  }
+}
+```
+
+Your wallet needs USDC on Solana mainnet. If no private key is provided, 402 errors are returned as-is.
+
 ## License
 
 MIT

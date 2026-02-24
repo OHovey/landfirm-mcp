@@ -38,6 +38,10 @@
     "src/"
   ],
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.26.0"
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "@solana/kit": "^5.5.1",
+    "@x402/core": "^2.4.0",
+    "@x402/fetch": "^2.4.0",
+    "@x402/svm": "^2.4.0"
   }
 }
