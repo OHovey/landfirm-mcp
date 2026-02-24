@@ -1,6 +1,6 @@
 # Landfirm MCP Server
 
-MCP server for the [Landfirm](https://landfirm.com) UK government data API. Exposes Companies House, Land Registry, EPC, and flood risk data as MCP tools for Claude and other MCP-compatible agents.
+MCP server for the [Landfirm](https://landfirm.space) UK government data API. Exposes Companies House, Land Registry, EPC, and flood risk data as MCP tools for Claude and other MCP-compatible agents.
 
 ## Tools
 
@@ -28,7 +28,7 @@ npm install
 Set the Landfirm API base URL (defaults to `http://localhost:3000`):
 
 ```bash
-export LANDFIRM_API_URL=https://landfirm.com
+export LANDFIRM_API_URL=https://landfirm.space
 ```
 
 ## Usage with Claude Desktop
@@ -42,7 +42,7 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
       "command": "node",
       "args": ["/path/to/landfirm-mcp/index.js"],
       "env": {
-        "LANDFIRM_API_URL": "https://landfirm.com"
+        "LANDFIRM_API_URL": "https://landfirm.space"
       }
     }
   }
