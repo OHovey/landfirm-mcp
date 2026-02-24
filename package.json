@@ -1,16 +1,16 @@
 {
-  "name": "ukledger-mcp",
+  "name": "landfirm-mcp",
   "version": "1.0.0",
-  "description": "MCP server for the Wicket/UKLedger UK government data API",
+  "description": "MCP server for the Landfirm UK government data API",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "ukledger-mcp": "./index.js"
+    "landfirm-mcp": "./index.js"
   },
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": ["mcp", "uk", "property", "companies-house", "epc", "flood-risk"],
+  "keywords": ["mcp", "uk", "property", "companies-house", "epc", "flood-risk", "landfirm"],
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0"

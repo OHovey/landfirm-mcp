@@ -23,7 +23,7 @@ for (const mod of modules) {
 
 export function createServer() {
   const server = new Server(
-    { name: 'ukledger', version: '1.0.0' },
+    { name: 'landfirm', version: '1.0.0' },
     { capabilities: { tools: {}, resources: {} } }
   );
 
@@ -60,20 +60,20 @@ export function createServer() {
   server.setRequestHandler(ListResourcesRequestSchema, async () => ({
     resources: [
       {
-        uri: 'wicket://api/overview',
-        name: 'Wicket API Overview',
-        description: 'Overview of the Wicket/UKLedger API: data sources, coverage, and pricing',
+        uri: 'landfirm://api/overview',
+        name: 'Landfirm API Overview',
+        description: 'Overview of the Landfirm API: data sources, coverage, and pricing',
         mimeType: 'text/plain',
       },
     ],
   }));
 
   server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
-    if (request.params.uri === 'wicket://api/overview') {
+    if (request.params.uri === 'landfirm://api/overview') {
       return {
         contents: [
           {
-            uri: 'wicket://api/overview',
+            uri: 'landfirm://api/overview',
             mimeType: 'text/plain',
             text: OVERVIEW_TEXT,
           },
@@ -86,7 +86,7 @@ export function createServer() {
   return server;
 }
 
-const OVERVIEW_TEXT = `Wicket (UKLedger) API — UK Government Data for AI Agents
+const OVERVIEW_TEXT = `Landfirm API — UK Government Data for AI Agents
 
 Data Sources:
 • Companies House — All UK registered companies (name, status, SIC codes, incorporation date, postcode)

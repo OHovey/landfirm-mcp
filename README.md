@@ -1,6 +1,6 @@
-# UKLedger MCP Server
+# Landfirm MCP Server
 
-MCP server for the [Wicket/UKLedger](https://github.com/oliverhovey/UKLedger) UK government data API. Exposes Companies House, Land Registry, EPC, and flood risk data as MCP tools for Claude and other MCP-compatible agents.
+MCP server for the [Landfirm](https://landfirm.com) UK government data API. Exposes Companies House, Land Registry, EPC, and flood risk data as MCP tools for Claude and other MCP-compatible agents.
 
 ## Tools
 
@@ -25,10 +25,10 @@ npm install
 
 ## Configuration
 
-Set the Wicket API base URL (defaults to `http://localhost:3000`):
+Set the Landfirm API base URL (defaults to `http://localhost:3000`):
 
 ```bash
-export WICKET_API_URL=https://your-wicket-api.example.com
+export LANDFIRM_API_URL=https://landfirm.com
 ```
 
 ## Usage with Claude Desktop
@@ -38,11 +38,11 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 ```json
 {
   "mcpServers": {
-    "ukledger": {
+    "landfirm": {
       "command": "node",
-      "args": ["/path/to/UKLedger-mcp/index.js"],
+      "args": ["/path/to/landfirm-mcp/index.js"],
       "env": {
-        "WICKET_API_URL": "https://your-wicket-api.example.com"
+        "LANDFIRM_API_URL": "https://landfirm.com"
       }
     }
   }
@@ -52,5 +52,5 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 ## Usage with Claude Code
 
 ```bash
-claude mcp add ukledger node /path/to/UKLedger-mcp/index.js
+claude mcp add landfirm node /path/to/landfirm-mcp/index.js
 ```
