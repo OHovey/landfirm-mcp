@@ -1,6 +1,6 @@
 {
   "name": "landfirm-mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP server for the Landfirm UK government data API — Companies House, Land Registry, EPC, and flood risk data",
   "main": "index.js",
   "type": "module",
