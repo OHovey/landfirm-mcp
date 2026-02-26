@@ -21,8 +21,9 @@ async function buildFetch() {
 
 const payFetch = await buildFetch();
 
-export async function apiGet(path, params = {}) {
-  const url = new URL(path, BASE_URL);
+export async function apiGet(path, params = {}, { test = false } = {}) {
+  const resolvedPath = test ? path.replace('/api/', '/api/test/') : path;
+  const url = new URL(resolvedPath, BASE_URL);
   for (const [key, value] of Object.entries(params)) {
     if (value !== undefined && value !== null && value !== '') {
       url.searchParams.set(key, String(value));

@@ -1,5 +1,10 @@
 import { apiGet } from '../utils/api-client.js';
 
+const testParam = {
+  type: 'boolean',
+  description: 'Use free test endpoint with dummy data (no payment required). Default: false.',
+};
+
 export const tools = [
   {
     name: 'get_flood_risk',
@@ -12,6 +17,7 @@ export const tools = [
           type: 'string',
           description: 'UK postcode (e.g. "SW1A 1AA"). All UK postcodes supported.',
         },
+        test: testParam,
       },
       required: ['postcode'],
     },
@@ -46,18 +52,20 @@ export const tools = [
           type: 'integer',
           description: 'Results per page (default: 20, max: 100).',
         },
+        test: testParam,
       },
     },
   },
 ];
 
 export async function handle(name, args) {
+  const opts = { test: args.test };
   switch (name) {
     case 'get_flood_risk':
-      return apiGet(`/api/flood/${encodeURIComponent(args.postcode)}`);
+      return apiGet(`/api/flood/${encodeURIComponent(args.postcode)}`, {}, opts);
     case 'search_flood_risk': {
       const { postcodeArea, riverSeaRisk, surfaceWaterRisk, page, limit } = args;
-      return apiGet('/api/flood/search', { postcodeArea, riverSeaRisk, surfaceWaterRisk, page, limit });
+      return apiGet('/api/flood/search', { postcodeArea, riverSeaRisk, surfaceWaterRisk, page, limit }, opts);
     }
     default:
       throw new Error(`Unknown tool: ${name}`);

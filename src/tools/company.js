@@ -13,6 +13,10 @@ export const tools = [
           description:
             'Companies House number (8 alphanumeric characters, e.g. "00012345" or "SC123456"). Numeric numbers should be left-padded with zeros.',
         },
+        test: {
+          type: 'boolean',
+          description: 'Use free test endpoint with dummy data (no payment required). Default: false.',
+        },
       },
       required: ['companyNumber'],
     },
@@ -61,6 +65,10 @@ export const tools = [
           type: 'integer',
           description: 'Results per page (default: 20, max: 100).',
         },
+        test: {
+          type: 'boolean',
+          description: 'Use free test endpoint with dummy data (no payment required). Default: false.',
+        },
       },
     },
   },
@@ -69,10 +77,10 @@ export const tools = [
 export async function handle(name, args) {
   switch (name) {
     case 'get_company':
-      return apiGet(`/api/company/${encodeURIComponent(args.companyNumber)}`);
+      return apiGet(`/api/company/${encodeURIComponent(args.companyNumber)}`, {}, { test: args.test });
     case 'search_companies': {
       const { q, status, category, sic, postcodeArea, incorporatedAfter, incorporatedBefore, page, limit } = args;
-      return apiGet('/api/company/search', { q, status, category, sic, postcodeArea, incorporatedAfter, incorporatedBefore, page, limit });
+      return apiGet('/api/company/search', { q, status, category, sic, postcodeArea, incorporatedAfter, incorporatedBefore, page, limit }, { test: args.test });
     }
     default:
       throw new Error(`Unknown tool: ${name}`);

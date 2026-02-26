@@ -1,5 +1,10 @@
 import { apiGet } from '../utils/api-client.js';
 
+const testParam = {
+  type: 'boolean',
+  description: 'Use free test endpoint with dummy data (no payment required). Default: false.',
+};
+
 export const tools = [
   {
     name: 'get_property_transactions',
@@ -12,6 +17,7 @@ export const tools = [
           type: 'string',
           description: 'UK postcode (e.g. "SW1A 1AA"). England & Wales only.',
         },
+        test: testParam,
       },
       required: ['postcode'],
     },
@@ -27,6 +33,7 @@ export const tools = [
           type: 'string',
           description: 'UK postcode (e.g. "SW1A 1AA"). England & Wales only.',
         },
+        test: testParam,
       },
       required: ['postcode'],
     },
@@ -42,6 +49,7 @@ export const tools = [
           type: 'string',
           description: 'UK postcode (e.g. "SW1A 1AA"). England & Wales only.',
         },
+        test: testParam,
       },
       required: ['postcode'],
     },
@@ -99,22 +107,24 @@ export const tools = [
           type: 'integer',
           description: 'Results per page (default: 20, max: 100).',
         },
+        test: testParam,
       },
     },
   },
 ];
 
 export async function handle(name, args) {
+  const opts = { test: args.test };
   switch (name) {
     case 'get_property_transactions':
-      return apiGet(`/api/property/${encodeURIComponent(args.postcode)}`);
+      return apiGet(`/api/property/${encodeURIComponent(args.postcode)}`, {}, opts);
     case 'get_property_summary':
-      return apiGet(`/api/property/${encodeURIComponent(args.postcode)}/summary`);
+      return apiGet(`/api/property/${encodeURIComponent(args.postcode)}/summary`, {}, opts);
     case 'get_property_intelligence':
-      return apiGet(`/api/property/${encodeURIComponent(args.postcode)}/intelligence`);
+      return apiGet(`/api/property/${encodeURIComponent(args.postcode)}/intelligence`, {}, opts);
     case 'search_properties': {
       const { town, district, county, type, tenure, minPrice, maxPrice, fromDate, toDate, page, limit } = args;
-      return apiGet('/api/property/search', { town, district, county, type, tenure, minPrice, maxPrice, fromDate, toDate, page, limit });
+      return apiGet('/api/property/search', { town, district, county, type, tenure, minPrice, maxPrice, fromDate, toDate, page, limit }, opts);
     }
     default:
       throw new Error(`Unknown tool: ${name}`);

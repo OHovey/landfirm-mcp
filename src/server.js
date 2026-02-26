@@ -112,4 +112,6 @@ Pricing (pay-per-query via x402 on Solana):
 • Flood risk lookup: $0.003
 • Flood risk search: $0.003
 
-Payment: x402 micropayments on Solana mainnet. Payment is handled automatically at the HTTP layer — no API key required.`;
+Payment: x402 micropayments on Solana mainnet. Payment is handled automatically at the HTTP layer — no API key required.
+
+Free Testing: All tools accept an optional "test" parameter (boolean). When set to true, the tool hits free test endpoints that return realistic dummy data — no payment required. Useful for integration testing and development.`;

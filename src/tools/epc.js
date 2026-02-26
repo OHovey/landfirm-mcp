@@ -1,5 +1,10 @@
 import { apiGet } from '../utils/api-client.js';
 
+const testParam = {
+  type: 'boolean',
+  description: 'Use free test endpoint with dummy data (no payment required). Default: false.',
+};
+
 export const tools = [
   {
     name: 'get_epc',
@@ -12,6 +17,7 @@ export const tools = [
           type: 'string',
           description: 'UK postcode (e.g. "SW1A 1AA"). England & Wales only.',
         },
+        test: testParam,
       },
       required: ['postcode'],
     },
@@ -57,6 +63,7 @@ export const tools = [
           type: 'integer',
           description: 'Results per page (default: 20, max: 100).',
         },
+        test: testParam,
       },
       required: ['postcodeArea'],
     },
@@ -64,12 +71,13 @@ export const tools = [
 ];
 
 export async function handle(name, args) {
+  const opts = { test: args.test };
   switch (name) {
     case 'get_epc':
-      return apiGet(`/api/epc/${encodeURIComponent(args.postcode)}`);
+      return apiGet(`/api/epc/${encodeURIComponent(args.postcode)}`, {}, opts);
     case 'search_epc': {
       const { postcodeArea, rating, minEfficiency, maxEfficiency, propertyType, builtForm, page, limit } = args;
-      return apiGet('/api/epc/search', { postcodeArea, rating, minEfficiency, maxEfficiency, propertyType, builtForm, page, limit });
+      return apiGet('/api/epc/search', { postcodeArea, rating, minEfficiency, maxEfficiency, propertyType, builtForm, page, limit }, opts);
     }
     default:
       throw new Error(`Unknown tool: ${name}`);
